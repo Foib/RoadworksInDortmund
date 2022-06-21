@@ -10,7 +10,7 @@ var marker = L.marker([0, 0]).addTo(map);
 const url = "https://opendata.dortmund.de/OpenDataConverter/download/FB66/FB66-Baustellen%20tagesaktuell.json";
 
 data = fetch(url);
-console.log(data);
+console.log(data, {headers:{"mode":"cors"}});
 
 /*
 
