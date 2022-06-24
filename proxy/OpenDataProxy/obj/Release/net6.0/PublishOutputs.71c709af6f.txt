@@ -1,0 +1,11 @@
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\OpenDataProxy.exe
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\OpenDataProxy.dll
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\OpenDataProxy.deps.json
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\OpenDataProxy.runtimeconfig.json
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\OpenDataProxy.pdb
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\fynn.budde\source\repos\OpenDataProxy\OpenDataProxy\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
