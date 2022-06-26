@@ -3,6 +3,9 @@ const userLocale =
     ? navigator.languages[0]
     : navigator.language;
 
+const suburbsBarChart = document.getElementById("suburbsBarChart");
+const list = document.getElementById("roadworkList");
+
 let map = L.map('map').setView([51.51661, 7.45829], 12);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -19,18 +22,13 @@ var redIcon = new L.Icon({
 	shadowSize: [41, 41]
 });
 
-const suburbsBarChart = document.getElementById("suburbsBarChart");
-
 let roadworkData;
-
-const url = "https://localhost:7189/Roadworks";
-ajax_get(url, function(data) {
+const dataUrl = "https://localhost:7189/Roadworks";
+ajax_get(dataUrl, function(data) {
     roadworkData = data;
     addRoadworkMarker(data);
     createCharts();
 });
-
-const list = document.getElementById("roadworkList");
 
 let markerList = [];
 
