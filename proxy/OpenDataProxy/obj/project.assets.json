@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fynn.budde\\source\\repos\\OpenDataProxy\\OpenDataProxy\\OpenDataProxy.csproj",
+      "projectUniqueName": "C:\\Users\\fynn.budde\\Documents\\GitHub\\RoadworksInDortmund\\proxy\\OpenDataProxy\\OpenDataProxy.csproj",
       "projectName": "OpenDataProxy",
-      "projectPath": "C:\\Users\\fynn.budde\\source\\repos\\OpenDataProxy\\OpenDataProxy\\OpenDataProxy.csproj",
+      "projectPath": "C:\\Users\\fynn.budde\\Documents\\GitHub\\RoadworksInDortmund\\proxy\\OpenDataProxy\\OpenDataProxy.csproj",
       "packagesPath": "C:\\Users\\fynn.budde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fynn.budde\\source\\repos\\OpenDataProxy\\OpenDataProxy\\obj\\",
+      "outputPath": "C:\\Users\\fynn.budde\\Documents\\GitHub\\RoadworksInDortmund\\proxy\\OpenDataProxy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fynn.budde\\AppData\\Roaming\\NuGet\\NuGet.Config",

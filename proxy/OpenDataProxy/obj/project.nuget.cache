@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T05siKAb4G86L9El+/1bUVzi0U5eg2VT8uP3ihqtDDTK9lSd6cj7Sp+NKQuScySH0+g03tHAufdb1f5X8FLUfw==",
+  "dgSpecHash": "n/hhLB8lFXuytCojwpt6A6vfgjK2cCUgjc3zJ2sRS7RZRfymbCRkVG2cJf8QLIJ1AY6PEUio6Iql3woMJHVY2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fynn.budde\\source\\repos\\OpenDataProxy\\OpenDataProxy\\OpenDataProxy.csproj",
+  "projectFilePath": "C:\\Users\\fynn.budde\\Documents\\GitHub\\RoadworksInDortmund\\proxy\\OpenDataProxy\\OpenDataProxy.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fynn.budde\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\fynn.budde\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
