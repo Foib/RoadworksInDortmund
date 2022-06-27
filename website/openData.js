@@ -63,11 +63,11 @@ function addRoadworkMarker() {
     // Loops through roadworkData, adds markers to the map and list items to the roadwork list
 
     roadworkData.forEach((element, index) => {
-        const coords = utmToLatLng(32, element["rechtswert"], element["hochwert"], true);
+        const coords = utmToLatLng(32, element.rechtswert, element.hochwert, true);
         
         let marker = L.marker([coords["lat"], coords["lng"]], {"listIndex": index, "icon": redIcon}).addTo(map);
 
-        marker.bindPopup(element["name"]);
+        marker.bindPopup(element.name);
     
         marker.on("click", scrollToRoadworkMarkerItem);
 
@@ -76,7 +76,7 @@ function addRoadworkMarker() {
         let li = document.createElement("li");
         li.className = "rmItem";
         li.id = "rm" + index;
-        li.innerText = element["name"];
+        li.innerText = element.name;
         li.onclick = scrollToRoadworkMakerOnMap;
         list.appendChild(li);
     });
@@ -110,16 +110,16 @@ function updateRoadworkTable(id) {
     id = parseInt(id.replace("rm", ""));
     data = roadworkData[id];
 
-    var date = new Date(data["zeit_von"].split(" ", 2)[0]);
+    var date = new Date(data.zeit_von.split(" ", 2)[0]);
     date = date.toLocaleDateString(userLocale, { weekday:"long", year:"numeric", month:"long", day:"numeric"}) 
 
-    setValueOfElement("tableValuedistrict", data["ortsteil"]);
-    setValueOfElement("tableValueStreet", data["name"]);
-    setValueOfElement("tableValueLocation", data["ortslage"]);
-    setValueOfElement("tableValueContractor", data["name1"]);
-    setValueOfElement("tableValueReason", data["sp_grund"]);
+    setValueOfElement("tableValuedistrict", data.ortsteil);
+    setValueOfElement("tableValueStreet", data.name);
+    setValueOfElement("tableValueLocation", data.ortslage);
+    setValueOfElement("tableValueContractor", data.name1);
+    setValueOfElement("tableValueReason", data.sp_grund);
     setValueOfElement("tableValueSince", date);
-    setValueOfElement("tableValueInfo", data["festlegung"].replace("/(\n|\t)/gm", ""));
+    setValueOfElement("tableValueInfo", data.festlegung.replace("/(\n|\t)/gm", ""));
 }
 
 function setValueOfElement(elementId, value) {
@@ -181,7 +181,7 @@ function createChart_sinceYear() {
     let years = new Map();
 
     roadworkData.forEach((element) => {
-        let year = new Date(element["zeit_von"].split(" ", 2)[0]).getFullYear();
+        let year = new Date(element.zeit_von.split(" ", 2)[0]).getFullYear();
 
         yearExists = years.has(year);
         if (yearExists) {
@@ -190,6 +190,14 @@ function createChart_sinceYear() {
             years.set(year, 1)
         }
     })
+
+    let colors = [
+        "rgb(200, 0, 0)",
+        "rgb(210, 44, 44)",
+        "rgb(218, 80, 80)",
+        "rgb(165, 0, 0)",
+        "rgb(136, 0, 0)"
+    ];
 
     let valuesData = [];
     let labelsData = [];
@@ -202,17 +210,21 @@ function createChart_sinceYear() {
         type: "pie",
         values: valuesData,
         labels: labelsData,
-        textinfo: "none",
-        insidetextorientation: "radial"
-      }]
+        textinfo: "label+percent",
+        textposition: "outside",
+        insidetextorientation: "radial",
+        marker: {
+            colors: colors
+        }
+    }]
     
     let layout = {
         title: "Roadworks started since",
         legend: {x: 0, y: 0},
         autosize: true
-      }
-      
-      Plotly.newPlot("yearsPieChart", data, layout, {responsive: true, displayModeBar: false});
+    }
+    
+    Plotly.newPlot("yearsPieChart", data, layout, {responsive: true, displayModeBar: false});
 }
 
 function centerLeafletMapOnMarker(marker) {

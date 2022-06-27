@@ -58,7 +58,7 @@ a {
     margin-top: 90px;
     margin-left: 10px;
 
-    min-width: 300px;
+    min-width: 400px;
 
     height: calc(100% - 120px);
 }
@@ -96,7 +96,8 @@ a {
 }
 
 .rmItem::marker {
-    content: "🚧 ";
+    color: rgb(200, 0, 0);
+    content: "► ";
 }
 
 table {
