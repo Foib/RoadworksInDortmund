@@ -22,17 +22,30 @@ let markerList = [];
 
 let roadworkData;
 
-fetchJSON();
+fetchRoadworkData();
 
-
-async function fetchJSON() {
+async function fetchRoadworkData() {
     let response = await fetch(dataUrl)
     let json = await response.json();
 
     roadworkData = json;
+    
+    roadworkData.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
 
     addRoadworkMarker(roadworkData);
     createCharts();
+}
+
+function sortByKey(obj){
+    var sortedArray = [];
+
+    for(var i in obj) {
+        sortedArray.push([obj[i], i]);
+    }
+
+    return sortedArray.sort();
 }
 
 function createMap(viewX, viewY, zoom, maxZoom, tileLayerUrl) {
@@ -46,7 +59,7 @@ function createMap(viewX, viewY, zoom, maxZoom, tileLayerUrl) {
     return m;
 }
 
-function addRoadworkMarker(roadworkData) {
+function addRoadworkMarker() {
     // Loops through roadworkData, adds markers to the map and list items to the roadwork list
 
     roadworkData.forEach((element, index) => {
@@ -115,28 +128,23 @@ function setValueOfElement(elementId, value) {
 
 function createCharts() {
     createChart_districtsRoadworkCount();
+    createChart_sinceYear();
 }
 
 function createChart_districtsRoadworkCount() {
     // Creates bar chart for the number of roadworks in each district 
 
     let districtsRoadworkCount = new Map();
-    districtsRoadworkCount.set("Innenstadt-West", 0);
-    districtsRoadworkCount.set("Innenstadt-Nord", 0);
-    districtsRoadworkCount.set("Innenstadt-Ost", 0);
-    districtsRoadworkCount.set("Eving", 0);
-    districtsRoadworkCount.set("Scharnhorst", 0);
-    districtsRoadworkCount.set("Brackel", 0);
-    districtsRoadworkCount.set("Aplerbeck", 0);
-    districtsRoadworkCount.set("Hörde", 0);
-    districtsRoadworkCount.set("Hombruch", 0);
-    districtsRoadworkCount.set("Lütgendortmund", 0);
-    districtsRoadworkCount.set("Huckarde", 0);
-    districtsRoadworkCount.set("Mengede", 0);
 
     roadworkData.forEach((element) => {
         let district = element.ortsteil;
-        districtsRoadworkCount.set(district, districtsRoadworkCount.get(district)+1);
+
+        districtExists = districtsRoadworkCount.has(district);
+        if (districtExists) {
+            districtsRoadworkCount.set(district, districtsRoadworkCount.get(district)+1);
+        }else {
+            districtsRoadworkCount.set(district, 1)
+        }
     })
 
     let dataAxisX = [];
@@ -145,7 +153,7 @@ function createChart_districtsRoadworkCount() {
         dataAxisX.push(key);
         dataAxisY.push(val);
     });
-    let districtsBarChart_data = [
+    let data = [
         {
             x: dataAxisX,
             y: dataAxisY,
@@ -160,13 +168,51 @@ function createChart_districtsRoadworkCount() {
             }
         }
     ];
-    var districtsBarChart_layout = {
+    let layout = {
         title: "Number of roadworks in the districts",
         barmode: 'stack',
         yaxis: {'categoryorder':'total ascending', tickangle: -45}
     };
 
-    Plotly.newPlot("districtsBarChart", districtsBarChart_data, districtsBarChart_layout, {responsive: true, displayModeBar: false});
+    Plotly.newPlot("districtsBarChart", data, layout, {responsive: true, displayModeBar: false});
+}
+
+function createChart_sinceYear() {
+    let years = new Map();
+
+    roadworkData.forEach((element) => {
+        let year = new Date(element["zeit_von"].split(" ", 2)[0]).getFullYear();
+
+        yearExists = years.has(year);
+        if (yearExists) {
+            years.set(year, years.get(year)+1);
+        }else {
+            years.set(year, 1)
+        }
+    })
+
+    let valuesData = [];
+    let labelsData = [];
+    years.forEach(function(key, val){
+        valuesData.push(key);
+        labelsData.push(val);
+    });
+
+    let data = [{
+        type: "pie",
+        values: valuesData,
+        labels: labelsData,
+        textinfo: "none",
+        insidetextorientation: "radial"
+      }]
+    
+    let layout = {
+        title: "Roadworks started since",
+        legend: {x: 0, y: 0},
+        autosize: true
+      }
+      
+      Plotly.newPlot("yearsPieChart", data, layout, {responsive: true, displayModeBar: false});
 }
 
 function centerLeafletMapOnMarker(marker) {
